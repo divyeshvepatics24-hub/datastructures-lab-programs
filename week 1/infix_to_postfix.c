@@ -94,8 +94,15 @@ void infixToPostfix(char* infix, char* postfix) {
         }
         // If character is an operator
         else if (isOperator(ch)) {
-            while (!isEmpty(&s) && precedence(peek(&s)) >= precedence(ch)) {
-                postfix[j++] = pop(&s);
+            // For right-associative operators (^), use > instead of >=
+            if (ch == '^') {
+                while (!isEmpty(&s) && precedence(peek(&s)) > precedence(ch)) {
+                    postfix[j++] = pop(&s);
+                }
+            } else {
+                while (!isEmpty(&s) && precedence(peek(&s)) >= precedence(ch)) {
+                    postfix[j++] = pop(&s);
+                }
             }
             push(&s, ch);
         }

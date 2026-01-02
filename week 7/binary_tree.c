@@ -41,6 +41,9 @@ Node* insert(Node* node, int data) {
 
 // Find minimum value node
 Node* findMin(Node* node) {
+    if (node == NULL) {
+        return NULL;
+    }
     while (node->left != NULL) {
         node = node->left;
     }

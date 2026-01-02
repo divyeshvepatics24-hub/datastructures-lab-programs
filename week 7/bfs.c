@@ -27,6 +27,9 @@ void enqueue(Queue* q, int value) {
 }
 
 int dequeue(Queue* q) {
+    if (isEmpty(q)) {
+        return -1;
+    }
     int value = q->items[q->front];
     if (q->front == q->rear) {
         q->front = -1;
